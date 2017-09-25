@@ -1,0 +1,16 @@
+{
+  "name": "ci",
+  "docker": {
+    "repo": "techdecaf"
+  },
+  "version": "0.1.4",
+  "description": "python and node ci build container",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo no tests yet...",
+    "build": "npm run test && ./build.sh",
+    "deploy": "npm run build && ./deploy.sh"
+  },
+  "author": "TechDecaf",
+  "license": "ISC"
+}
