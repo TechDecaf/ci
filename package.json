@@ -3,13 +3,13 @@
   "docker": {
     "repo": "techdecaf"
   },
-  "version": "0.1.4",
+  "version": "1.0.0",
   "description": "python and node ci build container",
   "main": "index.js",
   "scripts": {
     "test": "echo no tests yet...",
     "build": "npm run test && ./build.sh",
-    "deploy": "npm run build && ./deploy.sh"
+    "deploy": "./deploy.sh"
   },
   "author": "TechDecaf",
   "license": "ISC"
