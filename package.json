@@ -7,7 +7,7 @@
   "description": "python and node ci build container",
   "main": "index.js",
   "scripts": {
-    "test": "echo no tests yet...",
+    "test": "echo no tests yet",
     "build": "npm run test && ./build.sh",
     "deploy": "./deploy.sh"
   },
