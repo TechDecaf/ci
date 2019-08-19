@@ -8,7 +8,7 @@
 
 TechDecaf CI runs an node 11-alpine base with these additional components
 
-[jq, aws, npm, pip3, curl, node, python3]
+[jq, aws, npm, pip3, curl, node, python3, make, gettext, docker]
 
 ## Build / Deploy
 
