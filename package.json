@@ -3,7 +3,7 @@
   "docker": {
     "repo": "techdecaf"
   },
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "python and node ci build container",
   "main": "index.js",
   "scripts": {
