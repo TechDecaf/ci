@@ -1,7 +1,7 @@
 FROM node:12-alpine
 
 # INSTALL DEPENDENCIES
-RUN apk add --no-cache --update python3 git jq curl make docker gettext
+RUN apk add --no-cache --update python3 git jq curl docker
 RUN sh -c "$(curl -fsSL https://raw.github.com/techdecaf/tasks/master/install.sh)"
 
 # INSTALL AWS CLI
@@ -13,9 +13,7 @@ RUN python3 --version \
     && jq --version \
     && curl --version \
     && tasks --version \
-    && make --version \
     && docker --version \
-    && envsubst --version \
     && aws --version \
     && yarn --version \
     && pip3 --version \
