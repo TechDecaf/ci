@@ -1,0 +1,18 @@
+# FULL DOCUMENTATION CAN BE FOUND HERE: #https://docs.gitlab.com/ce/ci/yaml/
+image: techdecaf/ci:latest
+
+# run in order.
+stages: [build, publish]
+
+# runs before each job
+before_script:
+
+build:
+  stage: build
+  script: [tasks run build]
+
+publish:
+  stage: publish
+  script: [tasks run login publish]
+  only: [tags]
+  except: [branches]

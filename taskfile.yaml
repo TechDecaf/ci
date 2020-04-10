@@ -8,21 +8,34 @@ variables:
   CI_COMMIT_TAG: "{{EXEC `git describe --tags --always --dirty --abbrev=0`}}"
   CI_COMMIT_REF_NAME: "{{EXEC `git rev-parse --abbrev-ref HEAD`}}"
   CI_COMMIT_SHA: "{{EXEC `git rev-parse HEAD`}}"
-  DOCKER_CURRENT_TAG: "{{.DOCKER_REPO}}/{{.CI_PROJECT_NAME}}:{{.CI_COMMIT_TAG}}"
-  DOCKER_LATEST_TAG: "{{.DOCKER_CURRENT_TAG | replace .CI_COMMIT_TAG `latest`}}"
+  LATEST_IMAGE: "{{.DOCKER_REPO}}/{{.CI_PROJECT_NAME}}:latest"
+  VERSIONED_IMAGE: "{{.DOCKER_IMAGE | replace `latest` .CI_COMMIT_TAG}}"
 
 tasks:
   default:
     description: is the task that runs when no tasks have been specified.
     commands: [tasks list]
 
+login:
+  description: login to docker hub
+  variables:
+    DOCKER_FILE: "{{.HOME}}/.docker/config.json"
+  commands:
+    - "{{if .DOCKER_CONFIG}}
+      echo {{b64dec .DOCKER_CONFIG | WriteFile .DOCKER_FILE }}
+      {{end}}"
+
   build:
     description: build and tag docker project
     commands:
-      - "docker build . --pull --tag {{.DOCKER_CURRENT_TAG}} --tag {{.DOCKER_LATEST_TAG}}"
+      - "docker build . --pull --tag {{.LATEST_IMAGE}} --tag {{.VERSIONED_IMAGE}}"
 
   publish:
     description: publish to docker hub
     commands:
-      - docker push {{.DOCKER_CURRENT_TAG}}
-      - docker push {{.DOCKER_LATEST_TAG}}
+      - docker push {{.LATEST_IMAGE}}
+      - docker push {{.VERSIONED_IMAGE}}
+
+  release:
+    description: bump version and release for deployment
+    commands: [cgen bump --push]

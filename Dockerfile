@@ -1,4 +1,4 @@
-FROM node:11-alpine
+FROM node:12-alpine
 
 # INSTALL DEPENDENCIES
 RUN apk add --no-cache --update python3 git jq curl make docker gettext
@@ -17,7 +17,7 @@ RUN python3 --version \
     && docker --version \
     && envsubst --version \
     && aws --version \
-    && npm --version \
+    && yarn --version \
     && pip3 --version \
     && curl --version \
     && node --version
