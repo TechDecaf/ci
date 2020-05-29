@@ -7,9 +7,9 @@
 
 ## Included Components
 
-TechDecaf CI runs an node 11-alpine base with these additional components
+TechDecaf CI runs an node 12-alpine base with these additional components
 
-`[jq, aws, npm, pip3, curl, node, python3, make, gettext, docker, tasks]`
+`[python3 git jq curl docker bash ca-certificates wget glibc]`
 
 ## Use
 
